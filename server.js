@@ -3,6 +3,7 @@ const { ApolloServer, gql } = require("apollo-server-express");
 const typeDefs = require("./typeDefs");
 const resolvers = require("./resolvers");
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 
 
@@ -21,7 +22,7 @@ async function startServer(){
             res.send("Hello from apollo server");
         })
 
-        await mongoose.connect('mongodb+srv://samoje:samoje@cluster0.jebu46o.mongodb.net/toodoo?retryWrites=true&w=majority&appName=Cluster0',{
+        await mongoose.connect(process.env.MONGO_URL,{
         
         });
         console.log('Mongoose connected successfully');
