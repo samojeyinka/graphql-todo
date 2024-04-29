@@ -17,8 +17,8 @@ const resolvers = {
 
   Mutation: {
     createTodo: async (parent, args, context, info) => {
-      const { title, description } = args.todo;
-      const todo = new Todo({ title, description });
+      const { title, description, completed } = args.todo;
+      const todo = new Todo({ title, description, completed});
       await todo.save();
       return todo;
     },
@@ -31,7 +31,8 @@ const resolvers = {
 
     updateTodo: async (parent, args, context, info) => {
       const { id } = args;
-      const { title, description } = args.todo;
+      const { title, description, completed } = args.todo;
+
       const updates = {}
  
       if(title !== undefined){
@@ -41,6 +42,10 @@ const resolvers = {
       if(description !== undefined){
         updates.description = description;
      }
+
+     if(completed !== undefined){
+      updates.completed = completed;
+   }
 
       const todo = await Todo.findByIdAndUpdate(
         id,
@@ -53,3 +58,4 @@ const resolvers = {
 };
 
 module.exports = resolvers;
+ 

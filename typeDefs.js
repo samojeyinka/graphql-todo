@@ -5,6 +5,7 @@ type Todo {
     id: ID
     title:String
     description:String
+    completed:Boolean
 }
 
 type Query {
@@ -17,6 +18,7 @@ type Query {
 input TodoInput {
     title:String
     description:String
+    completed:Boolean
 }
 
 type Mutation{
