@@ -19,7 +19,7 @@ async function startServer(){
         apolloServer.applyMiddleware({app: app});
 
         app.use((req,res) => {
-            res.send("Hello from apollo server");
+            res.send("Graphql Todo api");
         })
 
         await mongoose.connect(process.env.MONGO_URL,{
